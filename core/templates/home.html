@@ -1,12 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
-    <h2>Home</h2>
-</body>
-</html>
+{% extends 'admin_base.html'%}
+
+
+{% block contents %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> BOARDS AND COUNCILS MEMBERSHIPS</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>
+                                    <small><b> Institutional & act</b></small>
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Position
+                                </th>
+                                <th class="text-riht">
+                                    Status
+                                </th>
+                                <th>
+                                    A.Schedule
+                                </th>
+                                <th>
+                                    Appointment Date
+                                </th>
+                                <th>
+                                    Expiry Date
+                                </th>
+                                <th>
+                                    Gazzeted By
+                                </th>
+                            </thead>
+                            <tbody>
+
+                                {% for member in members %}
+
+                                {% if member.is_expired %}
+                                <tr class="table-danger">
+                                    {% else%}
+                                <tr>
+                                    {% endif %}
+
+
+                                    <td>
+                                        {{member.institutional}}
+                                    </td>
+                                    <td>
+                                        {{member.name}}
+                                    </td>
+                                    <td>
+                                        {{member.position}}
+                                    </td>
+                                    <td class="text-riht">
+                                        {{member.status}} Term
+                                    </td>
+                                    <td>
+                                        {{member.appointment_schedule}}
+                                    </td>
+                                    <td>
+                                        {{member.date_of_appointment}}
+                                    </td>
+                                    <td>
+                                        {{member.date_of_expiry}}
+                                    </td>
+                                    <td>
+                                        {{member.gazetted_by}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% include "paginator.html" with page=members %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contents %}

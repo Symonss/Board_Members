@@ -5,9 +5,10 @@ from django.conf import settings
 
 class Institutional(models.Model):
     name = models.CharField(max_length = 100)
+    abriviation = models.CharField(max_length = 30, default = 'No Abvr')
 
     def __str__(self):
-        return self.name
+        return self.abriviation
 
 class Position(models.Model):
     name = models.CharField(max_length = 100)
@@ -19,18 +20,19 @@ class Position(models.Model):
 #
 class Member(models.Model):
     STATUS_CHOICES = (
-        ('1', 'First_Term'),
-        ('2', 'Second_Term'),
-        ('3', 'Third_Term'),
+        ('1st', '1st'),
+        ('2nd', '2nd'),
+        ('3rd', '3rd'),
     )
     name = models.CharField(max_length=100)
     institutional = models.ForeignKey(Institutional, on_delete = models.CASCADE)
     position = models.ForeignKey(Position, on_delete = models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='1')
-    appointment_chedule = models.CharField(max_length = 300)
+    appointment_schedule = models.CharField(max_length = 300)
     date_of_appointment = models.DateTimeField()
     date_of_expiry = models.DateTimeField()
     gazetted_by = models.CharField(max_length = 100)
+    is_expired = models.BooleanField(default = False)
 
     def __str__(self):
         return self.name

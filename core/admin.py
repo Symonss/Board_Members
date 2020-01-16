@@ -15,7 +15,7 @@ admin.site.register(Institutional, InstitutionalAdmin)
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('name','institutional','position','status',
-                    'appointment_chedule',
+                    'appointment_schedule',
                     'date_of_appointment',
                     'date_of_expiry',
                     'gazetted_by'
