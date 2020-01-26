@@ -5,10 +5,10 @@ from django.conf import settings
 
 class Institutional(models.Model):
     name = models.CharField(max_length = 100)
-    abriviation = models.CharField(max_length = 30, default = 'No Abvr')
+    
 
     def __str__(self):
-        return self.abriviation
+        return self.name
 
 class Position(models.Model):
     name = models.CharField(max_length = 100)

@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/load.css'%}">
+{% block content %}
+
+<div class="navbar">
+  <a class="active" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="#"><i class="fa fa-fw fa-user"></i> Logout</a>
+</div>
+
+
+
+{% load crispy_forms_tags %}
+
+
+<div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+        <h2>{{ user_type }}</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
